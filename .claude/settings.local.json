@@ -10,7 +10,14 @@
       "Bash(git remote add:*)",
       "Bash(git push:*)",
       "Bash(npm install)",
-      "Bash(npm run dev:*)"
+      "Bash(npm run dev:*)",
+      "Bash(lsof:*)",
+      "Bash(pkill:*)",
+      "Bash(true)",
+      "Bash(git checkout:*)",
+      "Bash(rm:*)",
+      "Bash(grep:*)",
+      "Bash(npm install:*)"
     ],
     "deny": []
   }

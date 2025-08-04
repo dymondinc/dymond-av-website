@@ -1,6 +1,9 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Calendar, Clock, MapPin, User, Phone, Mail, DollarSign, FileText, Send, CheckCircle, PenTool, Plus, Minus, Eye, ShoppingCart, Monitor, Music, Lightbulb } from 'lucide-react';
+import React, { useState, useRef, useEffect, lazy, Suspense } from 'react';
+import { Calendar, Clock, MapPin, User, Phone, Mail, DollarSign, FileText, Send, CheckCircle, PenTool, Plus, Minus, Eye, ShoppingCart, Monitor, Music, Lightbulb, Loader } from 'lucide-react';
 import Logo from './Logo';
+
+// Lazy load the 3D visualizer for better performance
+const Visualizer3D = lazy(() => import('./Visualizer3D'));
 
 const DymondAVBookingSystem = () => {
   const [formData, setFormData] = useState({
@@ -72,6 +75,8 @@ const DymondAVBookingSystem = () => {
   const [showPricing, setShowPricing] = useState(false);
   const [showFullContract, setShowFullContract] = useState(false);
   const [availabilityStatus, setAvailabilityStatus] = useState('checking');
+  const [visualizerMode, setVisualizerMode] = useState('3d'); // '2d' or '3d'
+  const [selectedPackage, setSelectedPackage] = useState(null); // Track selected package
   
   const canvasRef = useRef(null);
   const [signatureExists, setSignatureExists] = useState(false);
@@ -174,6 +179,18 @@ const DymondAVBookingSystem = () => {
   };
 
   const selectPackage = (packageKey) => {
+    // If clicking the same package, deselect it
+    if (selectedPackage === packageKey) {
+      // Reset to base package only
+      const newFormData = { ...formData };
+      Object.keys(addOns).forEach(key => {
+        newFormData[key] = 0;
+      });
+      setFormData(newFormData);
+      setSelectedPackage(null);
+      return;
+    }
+    
     const pkg = packages[packageKey];
     const newFormData = { ...formData };
     
@@ -201,6 +218,7 @@ const DymondAVBookingSystem = () => {
     }
     
     setFormData(newFormData);
+    setSelectedPackage(packageKey);
   };
 
   const calculateTotal = () => {
@@ -749,54 +767,9 @@ Contract effective upon receipt of signed agreement and deposit payment.`;
         {/* Step 2: Equipment Configuration */}
         {currentStep === 2 && (
           <div className="grid lg:grid-cols-2 gap-12">
-            {/* Visual Setup */}
+            {/* Left Column - Configuration */}
             <div className="space-y-6">
-              <div className="bg-gray-900 p-6 rounded-lg border border-gray-700">
-                <h2 className="text-xl font-semibold mb-4 flex items-center text-blue-400">
-                  <Eye className="mr-2" />
-                  Your Event Setup
-                </h2>
-                <SetupVisualizer />
-                
-                <div className="mt-4 text-sm text-gray-400">
-                  <p>Real-time visualization of your selected equipment</p>
-                </div>
-              </div>
-
-              {/* Price Summary */}
-              <div className="bg-gradient-to-r from-blue-900/20 to-purple-900/20 p-6 rounded-lg border border-blue-500/30">
-                <div className="flex justify-between items-center mb-4">
-                  <h3 className="text-xl font-semibold">Package Total</h3>
-                  <div className="text-3xl font-bold text-blue-400">
-                    ${calculateTotal().toLocaleString()}
-                  </div>
-                </div>
-                <div className="space-y-2 text-sm">
-                  <div className="flex justify-between">
-                    <span>Base Package (4 hours)</span>
-                    <span>${basePackage.price.toLocaleString()}</span>
-                  </div>
-                  {Object.entries(formData).map(([key, qty]) => {
-                    if (addOns[key] && qty > 0) {
-                      const price = key === 'uplighting' ? getUplightingPrice() * qty : addOns[key].price * qty;
-                      return (
-                        <div key={key} className="flex justify-between text-blue-300">
-                          <span>
-                            {addOns[key].name} x{qty}
-                            {key === 'uplighting' && qty >= 8 && <span className="text-green-400"> (20% OFF)</span>}
-                          </span>
-                          <span>+${price.toLocaleString()}</span>
-                        </div>
-                      );
-                    }
-                    return null;
-                  })}
-                </div>
-              </div>
-            </div>
-
-            {/* Configuration Panel */}
-            <div className="space-y-6">
+              {/* Configuration Panel */}
               {/* Packages Section */}
               <div className="bg-gray-900 p-4 rounded-lg border border-blue-500">
                 <h4 className="font-semibold mb-3 flex items-center text-blue-400">
@@ -805,7 +778,11 @@ Contract effective upon receipt of signed agreement and deposit payment.`;
                 </h4>
                 <div className="space-y-3">
                   {Object.entries(packages).map(([key, pkg]) => (
-                    <div key={key} className="p-3 bg-gray-800 rounded border border-gray-600 hover:border-blue-500 cursor-pointer transition-colors">
+                    <div key={key} className={`p-3 bg-gray-800 rounded border transition-colors ${
+                      selectedPackage === key 
+                        ? 'border-blue-500 bg-gray-700' 
+                        : 'border-gray-600 hover:border-blue-500'
+                    } cursor-pointer`}>
                       <div className="flex justify-between items-start">
                         <div className="flex-1">
                           <div className="font-medium text-sm">{pkg.name}</div>
@@ -816,9 +793,13 @@ Contract effective upon receipt of signed agreement and deposit payment.`;
                         </div>
                         <button 
                           onClick={() => selectPackage(key)}
-                          className="px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white text-xs rounded transition-colors"
+                          className={`px-3 py-1 text-white text-xs rounded transition-colors ${
+                            selectedPackage === key 
+                              ? 'bg-red-600 hover:bg-red-700' 
+                              : 'bg-blue-600 hover:bg-blue-700'
+                          }`}
                         >
-                          Select
+                          {selectedPackage === key ? 'Remove' : 'Select'}
                         </button>
                       </div>
                     </div>
@@ -921,6 +902,97 @@ Contract effective upon receipt of signed agreement and deposit payment.`;
                         </div>
                       </div>
                     ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column - Sticky Visualizer */}
+            <div className="lg:sticky lg:top-8 lg:h-fit">
+              <div className="bg-gray-900 p-6 rounded-lg border border-gray-700">
+                <h2 className="text-xl font-semibold mb-4 flex items-center text-blue-400">
+                  <Eye className="mr-2" />
+                  Your Event Setup
+                </h2>
+                
+                {/* View Toggle Buttons */}
+                <div className="flex gap-2 mb-4">
+                  <button
+                    onClick={() => setVisualizerMode('2d')}
+                    className={`px-4 py-2 rounded-lg transition-colors ${
+                      visualizerMode === '2d' 
+                        ? 'bg-blue-600 text-white' 
+                        : 'bg-gray-800 text-gray-400 hover:bg-gray-700'
+                    }`}
+                  >
+                    2D View
+                  </button>
+                  <button
+                    onClick={() => setVisualizerMode('3d')}
+                    className={`px-4 py-2 rounded-lg transition-colors ${
+                      visualizerMode === '3d' 
+                        ? 'bg-blue-600 text-white' 
+                        : 'bg-gray-800 text-gray-400 hover:bg-gray-700'
+                    }`}
+                  >
+                    3D View
+                  </button>
+                </div>
+                
+                {/* Conditional Rendering of Visualizer */}
+                {visualizerMode === '2d' ? (
+                  <SetupVisualizer />
+                ) : (
+                  <div className="h-80 bg-gray-950 rounded-lg overflow-hidden">
+                    <Suspense fallback={
+                      <div className="h-full flex items-center justify-center bg-gray-950">
+                        <Loader className="animate-spin text-blue-400" size={32} />
+                      </div>
+                    }>
+                      <Visualizer3D formData={formData} />
+                    </Suspense>
+                  </div>
+                )}
+                
+                <div className="mt-4 text-sm text-gray-400">
+                  <p>Real-time visualization of your selected equipment</p>
+                </div>
+                
+                {/* Inline Visualizer Tips */}
+                <div className="mt-2 text-xs text-gray-400 flex flex-wrap gap-3">
+                  <span><span className="text-blue-400">Left Drag:</span> Rotate</span>
+                  <span><span className="text-blue-400">Right Drag:</span> Pan</span>
+                  <span><span className="text-blue-400">Scroll:</span> Zoom</span>
+                </div>
+                
+                {/* Package Breakdown - Moved from left column */}
+                <div className="mt-4 bg-gradient-to-r from-blue-900/20 to-purple-900/20 p-6 rounded-lg border border-blue-500/30">
+                  <div className="flex justify-between items-center mb-4">
+                    <h3 className="text-xl font-semibold">Package Total</h3>
+                    <div className="text-3xl font-bold text-blue-400">
+                      ${calculateTotal().toLocaleString()}
+                    </div>
+                  </div>
+                  <div className="space-y-2 text-sm">
+                    <div className="flex justify-between">
+                      <span>Base Package (4 hours)</span>
+                      <span>${basePackage.price.toLocaleString()}</span>
+                    </div>
+                    {Object.entries(formData).map(([key, qty]) => {
+                      if (addOns[key] && qty > 0) {
+                        const price = key === 'uplighting' ? getUplightingPrice() * qty : addOns[key].price * qty;
+                        return (
+                          <div key={key} className="flex justify-between text-blue-300">
+                            <span>
+                              {addOns[key].name} x{qty}
+                              {key === 'uplighting' && qty >= 8 && <span className="text-green-400"> (20% OFF)</span>}
+                            </span>
+                            <span>+${price.toLocaleString()}</span>
+                          </div>
+                        );
+                      }
+                      return null;
+                    })}
                   </div>
                 </div>
               </div>

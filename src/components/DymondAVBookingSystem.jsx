@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Calendar, Clock, MapPin, User, Phone, Mail, DollarSign, FileText, Send, CheckCircle, PenTool, Plus, Minus, Eye, ShoppingCart, Monitor, Music, Lightbulb } from 'lucide-react';
+import Logo from './Logo';
 
 const DymondAVBookingSystem = () => {
   const [formData, setFormData] = useState({
@@ -573,14 +574,7 @@ Contract effective upon receipt of signed agreement and deposit payment.`;
       {/* Header */}
       <div className="container mx-auto px-6 py-8">
         <div className="text-center mb-8">
-          <div className="mb-4">
-            <div className="text-5xl font-bold tracking-wider text-white mb-2">
-              DYMOND
-            </div>
-            <div className="text-lg tracking-[0.3em] text-gray-300 font-light">
-              AUDIO/VISUAL
-            </div>
-          </div>
+          <Logo size="default" className="mb-4" />
           <p className="text-gray-400 text-lg">Professional Event Booking & Configuration System</p>
         </div>
 

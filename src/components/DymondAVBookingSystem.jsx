@@ -911,133 +911,130 @@ Contract effective upon receipt of signed agreement and deposit payment.`;
 
         {/* Step 3: Event Requirements */}
         {currentStep === 3 && (
-          <div className="container mx-auto px-4 md:px-6 grid md:grid-cols-2 gap-6">
-            <div>
-              <h4 className="font-semibold mb-3 text-blue-400">Music & Entertainment</h4>
-              <textarea
-                name="musicPreferences"
-                placeholder="Music preferences, genres, must-play songs..."
-                value={formData.musicPreferences}
-                onChange={handleInputChange}
-                rows="3"
-                className="w-full p-3 bg-black/60 border border-white/10 rounded-lg text-white placeholder-white/40 focus:ring-2 focus:ring-blue-500 focus:border-transparent mb-3"
-              />
-              <textarea
-                name="doNotPlayList"
-                placeholder="Do NOT play list (songs/artists to avoid)..."
-                value={formData.doNotPlayList}
-                onChange={handleInputChange}
-                rows="2"
-                className="w-full p-3 bg-black/60 border border-white/10 rounded-lg text-white placeholder-white/40 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              />
+          <div className="space-y-6">
+            <div className="container mx-auto px-4 md:px-6 grid md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="font-semibold mb-3 text-blue-400">Music & Entertainment</h4>
+                <textarea
+                  name="musicPreferences"
+                  placeholder="Music preferences, genres, must-play songs..."
+                  value={formData.musicPreferences}
+                  onChange={handleInputChange}
+                  rows="3"
+                  className="w-full p-3 bg-black/60 border border-white/10 rounded-lg text-white placeholder-white/40 focus:ring-2 focus:ring-blue-500 focus:border-transparent mb-3"
+                />
+                <textarea
+                  name="doNotPlayList"
+                  placeholder="Do NOT play list (songs/artists to avoid)..."
+                  value={formData.doNotPlayList}
+                  onChange={handleInputChange}
+                  rows="2"
+                  className="w-full p-3 bg-black/60 border border-white/10 rounded-lg text-white placeholder-white/40 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
+              <div>
+                <h4 className="font-semibold mb-3 text-blue-400">Event Details</h4>
+                <select
+                  name="dressCode"
+                  value={formData.dressCode}
+                  onChange={handleInputChange}
+                  className="w-full p-3 bg-black/60 border border-white/10 rounded-lg text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent mb-3"
+                >
+                  <option value="">DJ Dress Code</option>
+                  <option value="casual">Casual</option>
+                  <option value="business-casual">Business Casual</option>
+                  <option value="semi-formal">Semi-Formal</option>
+                  <option value="formal">Formal/Suit</option>
+                  <option value="black-tie">Black Tie</option>
+                  <option value="themed">Themed (specify below)</option>
+                </select>
+                <input
+                  type="text"
+                  name="eventTheme"
+                  placeholder="Event theme/colors (if applicable)"
+                  value={formData.eventTheme}
+                  onChange={handleInputChange}
+                  className="w-full p-3 bg-black/60 border border-white/10 rounded-lg text-white placeholder-white/40 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
             </div>
-            
-            <div>
-              <h4 className="font-semibold mb-3 text-blue-400">Event Details</h4>
-              <select
-                name="dressCode"
-                value={formData.dressCode}
-                onChange={handleInputChange}
-                className="w-full p-3 bg-black/60 border border-white/10 rounded-lg text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent mb-3"
-              >
-                <option value="">DJ Dress Code</option>
-                <option value="casual">Casual</option>
-                <option value="business-casual">Business Casual</option>
-                <option value="semi-formal">Semi-Formal</option>
-                <option value="formal">Formal/Suit</option>
-                <option value="black-tie">Black Tie</option>
-                <option value="themed">Themed (specify below)</option>
-              </select>
-              <input
-                type="text"
-                name="eventTheme"
-                placeholder="Event theme/colors (if applicable)"
-                value={formData.eventTheme}
-                onChange={handleInputChange}
-                className="w-full p-3 bg-black/60 border border-white/10 rounded-lg text-white placeholder-white/40 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              />
-            </div>
-          </div>
 
-          <div className="container mx-auto px-4 md:px-6 grid md:grid-cols-2 gap-6">
-            <div>
-              <h4 className="font-semibold mb-3 text-blue-400">Guest Information</h4>
-              <textarea
-                name="guestDemographics"
-                placeholder="Guest age range, crowd type, cultural considerations..."
-                value={formData.guestDemographics}
-                onChange={handleInputChange}
-                rows="3"
-                className="w-full p-3 bg-black/60 border border-white/10 rounded-lg text-white placeholder-white/40 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              />
+            <div className="container mx-auto px-4 md:px-6 grid md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="font-semibold mb-3 text-blue-400">Guest Information</h4>
+                <textarea
+                  name="guestDemographics"
+                  placeholder="Guest age range, crowd type, cultural considerations..."
+                  value={formData.guestDemographics}
+                  onChange={handleInputChange}
+                  rows="3"
+                  className="w-full p-3 bg-black/60 border border-white/10 rounded-lg text-white placeholder-white/40 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
+              <div>
+                <h4 className="font-semibold mb-3 text-blue-400">Key Moments & Announcements</h4>
+                <textarea
+                  name="keyMoments"
+                  placeholder="First dance, cake cutting, special announcements, timeline..."
+                  value={formData.keyMoments}
+                  onChange={handleInputChange}
+                  rows="3"
+                  className="w-full p-3 bg-black/60 border border-white/10 rounded-lg text-white placeholder-white/40 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
             </div>
-            
-            <div>
-              <h4 className="font-semibold mb-3 text-blue-400">Key Moments & Announcements</h4>
-              <textarea
-                name="keyMoments"
-                placeholder="First dance, cake cutting, special announcements, timeline..."
-                value={formData.keyMoments}
-                onChange={handleInputChange}
-                rows="3"
-                className="w-full p-3 bg-black/60 border border-white/10 rounded-lg text-white placeholder-white/40 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              />
-            </div>
-          </div>
 
-          <div className="container mx-auto px-4 md:px-6 grid md:grid-cols-2 gap-6">
-            <div>
-              <h4 className="font-semibold mb-3 text-blue-400">Special Requests</h4>
-              <textarea
-                name="specialRequests"
-                placeholder="Any special requests, dedications, surprises..."
-                value={formData.specialRequests}
-                onChange={handleInputChange}
-                rows="3"
-                className="w-full p-3 bg-black/60 border border-white/10 rounded-lg text-white placeholder-white/40 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              />
+            <div className="container mx-auto px-4 md:px-6 grid md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="font-semibold mb-3 text-blue-400">Special Requests</h4>
+                <textarea
+                  name="specialRequests"
+                  placeholder="Any special requests, dedications, surprises..."
+                  value={formData.specialRequests}
+                  onChange={handleInputChange}
+                  rows="3"
+                  className="w-full p-3 bg-black/60 border border-white/10 rounded-lg text-white placeholder-white/40 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
+              <div>
+                <h4 className="font-semibold mb-3 text-blue-400">Event Timeline</h4>
+                <textarea
+                  name="timeline"
+                  placeholder="Rough schedule: cocktails 5-6pm, dinner 6-8pm, dancing 8pm-midnight..."
+                  value={formData.timeline}
+                  onChange={handleInputChange}
+                  rows="3"
+                  className="w-full p-3 bg-black/60 border border-white/10 rounded-lg text-white placeholder-white/40 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
             </div>
-            
-            <div>
-              <h4 className="font-semibold mb-3 text-blue-400">Event Timeline</h4>
-              <textarea
-                name="timeline"
-                placeholder="Rough schedule: cocktails 5-6pm, dinner 6-8pm, dancing 8pm-midnight..."
-                value={formData.timeline}
-                onChange={handleInputChange}
-                rows="3"
-                className="w-full p-3 bg-black/60 border border-white/10 rounded-lg text-white placeholder-white/40 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              />
-            </div>
-          </div>
 
-          <div className="container mx-auto px-4 md:px-6 grid md:grid-cols-2 gap-6">
-            <div>
-              <h4 className="font-semibold mb-3 text-blue-400">Setup Requirements</h4>
-              <textarea
-                name="setupRequirements"
-                placeholder="Load-in details, setup time needed, access restrictions..."
-                value={formData.setupRequirements}
-                onChange={handleInputChange}
-                rows="3"
-                className="w-full p-3 bg-black/60 border border-white/10 rounded-lg text-white placeholder-white/40 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              />
-            </div>
-            
-            <div>
-              <h4 className="font-semibold mb-3 text-blue-400">Power & Technical</h4>
-              <textarea
-                name="powerRequirements"
-                placeholder="Available power outlets, technical restrictions, sound limitations..."
-                value={formData.powerRequirements}
-                onChange={handleInputChange}
-                rows="3"
-                className="w-full p-3 bg-black/60 border border-white/10 rounded-lg text-white placeholder-white/40 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              />
+            <div className="container mx-auto px-4 md:px-6 grid md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="font-semibold mb-3 text-blue-400">Setup Requirements</h4>
+                <textarea
+                  name="setupRequirements"
+                  placeholder="Load-in details, setup time needed, access restrictions..."
+                  value={formData.setupRequirements}
+                  onChange={handleInputChange}
+                  rows="3"
+                  className="w-full p-3 bg-black/60 border border-white/10 rounded-lg text-white placeholder-white/40 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
+              <div>
+                <h4 className="font-semibold mb-3 text-blue-400">Power & Technical</h4>
+                <textarea
+                  name="powerRequirements"
+                  placeholder="Available power outlets, technical restrictions, sound limitations..."
+                  value={formData.powerRequirements}
+                  onChange={handleInputChange}
+                  rows="3"
+                  className="w-full p-3 bg-black/60 border border-white/10 rounded-lg text-white placeholder-white/40 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
 
       {/* Step 4: Business & Insurance */}
       {currentStep === 4 && (

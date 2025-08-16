@@ -10,17 +10,18 @@ const NavBar = () => {
           <Logo size="small" />
         </Link>
         <nav className="hidden md:flex items-center gap-6 text-sm text-white/80">
+          <a href="#about" className="hover:text-white">About</a>
           <a href="#services" className="hover:text-white">Services</a>
-          <a href="#packages" className="hover:text-white">Packages</a>
+          <a href="#difference" className="hover:text-white">Why Us</a>
           <a href="#testimonials" className="hover:text-white">Reviews</a>
-          <a href="#gallery" className="hover:text-white">Gallery</a>
+          <a href="#faq" className="hover:text-white">FAQ</a>
           <a href="#contact" className="hover:text-white">Contact</a>
           <Link to="/booking" className="ml-2 inline-flex items-center rounded-full bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 font-medium shadow-lg shadow-blue-600/30">
-            Book Now
+            Quote Builder
           </Link>
         </nav>
         <Link to="/booking" className="md:hidden inline-flex items-center rounded-full bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 font-medium">
-          Book
+          Quote
         </Link>
       </div>
     </header>

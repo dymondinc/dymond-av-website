@@ -4,29 +4,38 @@ import { Link } from 'react-router-dom'
 const Footer = () => {
   return (
     <footer id="contact" className="border-t border-white/10 bg-black">
-      <div className="max-w-7xl mx-auto px-4 py-10 grid md:grid-cols-3 gap-8 text-white/80">
-        <div>
-          <div className="text-white font-extrabold text-xl">Dymond Audio/Visual</div>
-          <p className="mt-2 text-sm">Professional DJ, lighting, and AV production for weddings, corporate events, and nightlife.</p>
-        </div>
-        <div className="grid grid-cols-2 gap-4 text-sm">
-          <div className="space-y-2">
-            <a href="#services" className="hover:text-white">Services</a><br/>
-            <a href="#packages" className="hover:text-white">Packages</a><br/>
-            <a href="#testimonials" className="hover:text-white">Reviews</a>
-          </div>
-          <div className="space-y-2">
-            <a href="#gallery" className="hover:text-white">Gallery</a><br/>
-            <Link to="/booking" className="hover:text-white">Book</Link><br/>
-            <a href="mailto:info@dymondav.com" className="hover:text-white">info@dymondav.com</a>
+      <div className="max-w-7xl mx-auto px-4 py-12 grid md:grid-cols-4 gap-8 text-white/80">
+        <div className="md:col-span-2">
+          <div className="text-white font-extrabold text-xl">Dymond AV</div>
+          <p className="mt-2 text-sm italic">Making People Dance Since 2005</p>
+          <div className="mt-4 text-sm">
+            <div className="text-white/60">Serving All of Southern California</div>
+            <div>Orange County | Los Angeles | Riverside | San Bernardino</div>
           </div>
         </div>
-        <div className="md:text-right">
-          <Link to="/booking" className="inline-flex items-center rounded-full bg-blue-600 hover:bg-blue-500 text-white px-5 py-2 font-medium">
-            Check availability
-          </Link>
-          <div className="mt-3 text-xs text-white/50">© {new Date().getFullYear()} Dymond Audio/Visual</div>
+        <div className="text-sm">
+          <div className="text-white/60 mb-2">Explore</div>
+          <a href="#about" className="block hover:text-white">About</a>
+          <a href="#services" className="block hover:text-white">Services</a>
+          <a href="#difference" className="block hover:text-white">Why Us</a>
+          <a href="#gallery" className="block hover:text-white">See Our Work</a>
+          <Link to="/booking" className="block hover:text-white">Try Our Interactive Quote Builder</Link>
         </div>
+        <div className="text-sm">
+          <div className="text-white/60 mb-2">Contact</div>
+          <a href="tel:+17142621441" className="block hover:text-white">Call (714) 262-1441</a>
+          <a href="mailto:info@dymondentertainment.com" className="block hover:text-white">info@dymondentertainment.com</a>
+          <a href="https://www.dymondentertainment.com" target="_blank" rel="noreferrer" className="block hover:text-white">www.dymondentertainment.com</a>
+          <div className="mt-4">
+            <div className="text-white/60 mb-2">Follow Us</div>
+            <a href="https://instagram.com/dymondav" target="_blank" rel="noreferrer" className="block hover:text-white">Instagram: @dymondav</a>
+            <a href="https://facebook.com/dymondentertainment" target="_blank" rel="noreferrer" className="block hover:text-white">Facebook: /dymondentertainment</a>
+            <a href="https://linkedin.com/company/dymond-entertainment" target="_blank" rel="noreferrer" className="block hover:text-white">LinkedIn: /company/dymond-entertainment</a>
+          </div>
+        </div>
+      </div>
+      <div className="border-t border-white/10 py-4 text-center text-xs text-white/50">
+        © 2025 Dymond Entertainment. All rights reserved.
       </div>
     </footer>
   )

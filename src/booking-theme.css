@@ -1,0 +1,8 @@
+/* Booking page theme helpers */
+
+.no-scrollbar::-webkit-scrollbar {
+	display: none;
+}
+.no-scrollbar {
+	scrollbar-width: none;
+}

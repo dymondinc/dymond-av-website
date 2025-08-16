@@ -6,7 +6,7 @@ import Footer from '../components/Footer'
 import Logo from '../components/Logo'
 import TopTicker from '../components/TopTicker'
 
-const Visualizer3D = lazy(() => import('../components/Visualizer3D'))
+// const Visualizer3D = lazy(() => import('../components/Visualizer3D'))
 
 const HomePage = () => {
   return (
@@ -30,7 +30,7 @@ const HomePage = () => {
             </p>
             <p className="mt-3 text-sm text-white/70 italic">Formerly Dymond Entertainment - Now Dymond AV with expanded services and capabilities</p>
             <div className="mt-8 flex items-center gap-4 flex-wrap">
-              <Link to="/booking" className="inline-flex items-center rounded-full bg-blue-600 hover:bg-blue-500 text-white px-6 py-3 font-medium shadow-lg shadow-blue-600/30">
+              <Link to="/quote-builder" className="inline-flex items-center rounded-full bg-blue-600 hover:bg-blue-500 text-white px-6 py-3 font-medium shadow-lg shadow-blue-600/30">
                 Try Our Interactive Quote Builder
               </Link>
               <a href="#contact" className="inline-flex items-center rounded-full border border-white/20 hover:border-white/40 text-white px-6 py-3 font-medium">
@@ -48,10 +48,15 @@ const HomePage = () => {
               </div>
             </div>
           </div>
-          <div className="h-[460px] rounded-xl border border-white/10 bg-gradient-to-b from-white/5 to-white/0">
-            <Suspense fallback={<div className="w-full h-full flex items-center justify-center text-white/60">Loading visualizer…</div>}>
-              <Visualizer3D />
-            </Suspense>
+          <div className="h-[460px] rounded-xl border border-white/10 bg-white/5 flex items-center justify-center text-center p-8">
+            <div>
+              <div className="text-sm uppercase tracking-wider text-white/60">Live Demo</div>
+              <div className="mt-2 text-2xl font-extrabold">Interactive 3D Visualizer</div>
+              <p className="mt-2 text-white/70">See your setup come to life as you build. Configure lighting, audio, and visuals with instant pricing.</p>
+              <Link to="/quote-builder" className="mt-6 inline-flex items-center rounded-lg bg-blue-600 hover:bg-blue-500 text-white px-5 py-3 font-medium">
+                Launch Quote Builder
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -83,7 +88,7 @@ const HomePage = () => {
             </div>
           </div>
           <div className="mt-8 flex items-center gap-4">
-            <Link to="/booking" className="inline-flex items-center rounded-lg bg-blue-600 hover:bg-blue-500 text-white px-5 py-3 font-medium">
+            <Link to="/quote-builder" className="inline-flex items-center rounded-lg bg-blue-600 hover:bg-blue-500 text-white px-5 py-3 font-medium">
               Launch Quote Builder
             </Link>
             <a href="#" className="inline-flex items-center rounded-lg border border-white/20 hover:border-white/40 text-white px-5 py-3 font-medium">
@@ -293,13 +298,13 @@ const HomePage = () => {
               </div>
               <div className="mt-6 flex items-center gap-4">
                 <a href="mailto:info@dymondentertainment.com" className="inline-flex items-center rounded-lg bg-blue-600 hover:bg-blue-500 text-white px-5 py-3 font-medium">Get Free Consultation</a>
-                <Link to="/booking" className="inline-flex items-center rounded-lg border border-white/20 hover:border-white/40 text-white px-5 py-3 font-medium">Get Custom Quote</Link>
+                <Link to="/quote-builder" className="inline-flex items-center rounded-lg border border-white/20 hover:border-white/40 text-white px-5 py-3 font-medium">Get Custom Quote</Link>
               </div>
             </div>
             <div className="rounded-xl border border-white/10 p-6 bg-white/5">
               <div className="text-white/90 font-semibold">Quick Actions</div>
               <div className="mt-4 space-y-3 text-sm">
-                <Link to="/booking" className="block hover:text-white">Try Our Interactive Quote Builder</Link>
+                <Link to="/quote-builder" className="block hover:text-white">Try Our Interactive Quote Builder</Link>
                 <a href="#gallery" className="block hover:text-white">See Our Work</a>
                 <a href="tel:+17142621441" className="block hover:text-white">Call (714) 262-1441</a>
               </div>

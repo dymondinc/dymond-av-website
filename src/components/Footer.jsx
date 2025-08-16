@@ -19,7 +19,7 @@ const Footer = () => {
           <a href="#services" className="block hover:text-white">Services</a>
           <a href="#difference" className="block hover:text-white">Why Us</a>
           <a href="#gallery" className="block hover:text-white">See Our Work</a>
-          <Link to="/booking" className="block hover:text-white">Try Our Interactive Quote Builder</Link>
+          <Link to="/quote-builder" className="block hover:text-white">Try Our Interactive Quote Builder</Link>
         </div>
         <div className="text-sm">
           <div className="text-white/60 mb-2">Contact</div>

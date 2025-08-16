@@ -16,11 +16,11 @@ const NavBar = () => {
           <a href="#testimonials" className="hover:text-white">Reviews</a>
           <a href="#faq" className="hover:text-white">FAQ</a>
           <a href="#contact" className="hover:text-white">Contact</a>
-          <Link to="/booking" className="ml-2 inline-flex items-center rounded-full bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 font-medium shadow-lg shadow-blue-600/30">
+          <Link to="/quote-builder" className="ml-2 inline-flex items-center rounded-full bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 font-medium shadow-lg shadow-blue-600/30">
             Quote Builder
           </Link>
         </nav>
-        <Link to="/booking" className="md:hidden inline-flex items-center rounded-full bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 font-medium">
+        <Link to="/quote-builder" className="md:hidden inline-flex items-center rounded-full bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 font-medium">
           Quote
         </Link>
       </div>

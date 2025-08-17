@@ -1,3 +1,6 @@
+@use 'sass:color';
+@use './styles/variables' as vars;
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -30,3 +33,18 @@ body {
 .animation-delay-200 {
   animation-delay: 200ms;
 }
+
+/* Simple Sass demo style */
+.sass-test {
+  padding: 0.5rem 1rem;
+  background: vars.$brand-color;
+  color: #fff;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 10px 15px -3px rgba(14, 165, 233, 0.3), 0 4px 6px -4px rgba(14, 165, 233, 0.3);
+
+  &:hover {
+    background: color.scale(vars.$brand-color, $lightness: -10%);
+  }
+}
+

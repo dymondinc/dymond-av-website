@@ -13,6 +13,7 @@ const HomePage = () => {
     <div className="bg-black text-white">
       <NavBar />
       <TopTicker />
+      <div className="fixed bottom-4 right-4 z-50 sass-test">Sass OK</div>
 
       <section className="relative overflow-hidden pt-28">
         <div className="absolute inset-0 pointer-events-none">
